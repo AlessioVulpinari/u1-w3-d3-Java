@@ -56,4 +56,13 @@ public class Location {
     public void setEventList(List<Event> eventList) {
         this.eventList = eventList;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "city='" + city + '\'' +
+                ", name='" + name + '\'' +
+                ", location_id=" + location_id +
+                '}';
+    }
 }

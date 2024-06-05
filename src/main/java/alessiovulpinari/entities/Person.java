@@ -32,6 +32,9 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Invite> inviteList;
 
+    public Person() {
+    }
+
     public Person(Gender gender, LocalDate birthday, String email, String surname, String name) {
         this.gender = gender;
         this.birthday = birthday;
@@ -84,4 +87,15 @@ public class Person {
         this.gender = gender;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "gender=" + gender +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", person_id=" + person_id +
+                '}';
+    }
 }

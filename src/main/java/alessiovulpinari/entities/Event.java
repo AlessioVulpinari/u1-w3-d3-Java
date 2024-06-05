@@ -39,7 +39,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, LocalDate eventDate, String description, EventTypes eventType, int maxParticipants) {
+    public Event(Location location, String title, LocalDate eventDate, String description, EventTypes eventType, int maxParticipants) {
+        this.location = location;
         this.title = title;
         this.eventDate = eventDate;
         this.description = description;

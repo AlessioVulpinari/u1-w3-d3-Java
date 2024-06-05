@@ -60,4 +60,14 @@ public class Invite {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Invite{" +
+                "event=" + event +
+                ", inviteId=" + inviteId +
+                ", state=" + state +
+                ", person=" + person +
+                '}';
+    }
 }
