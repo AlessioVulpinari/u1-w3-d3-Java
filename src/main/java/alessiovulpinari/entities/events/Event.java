@@ -1,5 +1,7 @@
-package alessiovulpinari.entities;
+package alessiovulpinari.entities.events;
 
+import alessiovulpinari.entities.Invite;
+import alessiovulpinari.entities.Location;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -8,33 +10,35 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Event")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo_evento")
 public class Event {
     @Id
     @GeneratedValue
-    private UUID event_id;
+    protected UUID event_id;
 
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+    protected Location location;
 
     @OneToMany(mappedBy = "event")
-    private List<Invite> inviteList;
+    protected List<Invite> inviteList;
 
     @Column(name = "Title")
-    private String title;
+    protected String title;
 
     @Column(name = "eventDate")
-    private LocalDate eventDate;
+    protected LocalDate eventDate;
 
     @Column(name = "Description")
-    private String description;
+    protected String description;
 
     @Column(name = "eventType")
     @Enumerated(EnumType.STRING)
-    private EventTypes eventType;
+    protected EventTypes eventType;
 
     @Column(name = "maxParticipants")
-    private int maxParticipants;
+    protected int maxParticipants;
 
     public Event() {
     }

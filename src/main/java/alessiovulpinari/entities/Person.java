@@ -1,5 +1,6 @@
 package alessiovulpinari.entities;
 
+import alessiovulpinari.entities.events.RunningRace;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -31,6 +32,13 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private List<Invite> inviteList;
+
+    @ManyToMany
+    @JoinTable(name = "person_running_race",
+            joinColumns = @JoinColumn(name = "person_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "event_id", nullable = false)
+    )
+    private List<RunningRace> races;
 
     public Person() {
     }

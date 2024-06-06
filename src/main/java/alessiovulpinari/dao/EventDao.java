@@ -1,10 +1,14 @@
 package alessiovulpinari.dao;
 
-import alessiovulpinari.entities.Event;
+import alessiovulpinari.entities.events.Concert;
+import alessiovulpinari.entities.events.ConcertGenre;
+import alessiovulpinari.entities.events.Event;
 import alessiovulpinari.expetions.NotFoundExp;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.UUID;
 
 public class EventDao {
@@ -54,5 +58,17 @@ public class EventDao {
         transaction.commit();
 
         System.out.println("Evento: " + foundEvent.getDescription() + " è stato eliminato correttamente al db!");
+    }
+
+    public List<Concert> getAllConcertsInStreaming(boolean trueOrFalse) {
+        TypedQuery<Concert> query = entityManager.createQuery("SELECT c FROM Concert c WHERE c.streaming = :boolean", Concert.class);
+        query.setParameter("boolean", trueOrFalse);
+        return query.getResultList();
+    }
+
+    public List<Concert> getAllConcertForGenre(ConcertGenre concertGenre) {
+        TypedQuery<Concert> query = entityManager.createQuery("SELECT c FROM Concert c WHERE c.genre = :genre", Concert.class);
+        query.setParameter("genre", concertGenre);
+        return query.getResultList();
     }
 }

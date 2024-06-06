@@ -1,5 +1,6 @@
 package alessiovulpinari.entities;
 
+import alessiovulpinari.entities.events.Event;
 import jakarta.persistence.*;
 
 import java.util.UUID;
