@@ -47,9 +47,11 @@ public class Application {
 //        eventDao.save(pippoBaudoInTour);
         List<Concert> concertList = eventDao.getAllConcertsInStreaming(false);
         List<Concert> concertsForGenre = eventDao.getAllConcertForGenre(ConcertGenre.CLASSIC);
-        concertsForGenre.forEach(System.out::println);
 
-        
+        List<FootballMatch> footballMatchList = eventDao.getMatchesWinByTheVisitingTeam();
+        footballMatchList.forEach(System.out::println);
+
+
 //        Event lucca = eventDao.getEventById(UUID.fromString("0148a7f3-8315-4a29-b990-094622adc674"));
 
 //        Invite invite = new Invite(State.CONFIRMED, lucca, davideFromDb);

@@ -3,6 +3,7 @@ package alessiovulpinari.dao;
 import alessiovulpinari.entities.events.Concert;
 import alessiovulpinari.entities.events.ConcertGenre;
 import alessiovulpinari.entities.events.Event;
+import alessiovulpinari.entities.events.FootballMatch;
 import alessiovulpinari.expetions.NotFoundExp;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -69,6 +70,16 @@ public class EventDao {
     public List<Concert> getAllConcertForGenre(ConcertGenre concertGenre) {
         TypedQuery<Concert> query = entityManager.createQuery("SELECT c FROM Concert c WHERE c.genre = :genre", Concert.class);
         query.setParameter("genre", concertGenre);
+        return query.getResultList();
+    }
+
+    public List<FootballMatch> getMatchesWinByTheHomeTeam() {
+        TypedQuery<FootballMatch> query = entityManager.createQuery("SELECT f FROM FootballMatch f WHERE f.winingTea  = f.homeTeam", FootballMatch.class);
+        return query.getResultList();
+    }
+
+    public List<FootballMatch> getMatchesWinByTheVisitingTeam() {
+        TypedQuery<FootballMatch> query = entityManager.createQuery("SELECT f FROM FootballMatch f WHERE f.winingTea  = f.visitingTeam", FootballMatch.class);
         return query.getResultList();
     }
 }
